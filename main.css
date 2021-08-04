@@ -1,18 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
-body {
+
+:root {
   font-family: "Open Sans", sans-serif;
   background: #1b1f20;
   color: white;
 }
 
-header {
-  text-align: center;
+h1 {
+  font-size: 2.6em;
 }
 
-header h1 {
-  font-size: 2.6em;
-  margin-bottom: 0.5em;
-  margin-top: 0.5em;
+header {
+  text-align: center;
+  margin-bottom: 1.5em;
 }
 
 a {
@@ -22,5 +22,31 @@ a {
 
 a::before {
   content: "";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+.main {
+  text-align: center;
+}
+
+.main p {
+  margin: 0.4em;
+}
+
+.main p::before {
+  content: "=> ";
 }
 /*# sourceMappingURL=main.css.map */

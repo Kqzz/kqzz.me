@@ -6,13 +6,12 @@ body {
     color: white;
 }
 
+h1 {
+    font-size: 2.6em;
+}
+
 header {
     text-align: center;
-    h1 {
-        font-size: 2.6em;
-        margin-bottom: 0.5em;
-        margin-top: 0.5em;
-    }
 }
 
 a {
@@ -20,5 +19,28 @@ a {
     text-decoration: none;
     &::before {
         content: "";
+    }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+
+.main {
+    text-align: center;
+    p {
+        margin: 0.4em;
+        &::before {
+            content: "=> ";
+        }
     }
 }
