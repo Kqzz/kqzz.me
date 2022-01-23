@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
 
 :root {
-  font-family: "Source Code Pro";
   --text-color: black;
   margin: 2rem;
 }
 
 html,
 body {
+  font-family: "Source Code Pro";
   height: 100%;
   overflow-y: hidden;
 }
@@ -27,7 +27,26 @@ li {
   color: var(--text-color);
 }
 
-.links a {
+a {
+  position: relative;
+}
+
+a:after {
+  border-top: 0.1rem solid var(--text-color);
+  content: "";
+  position: absolute;
+  right: 100%;
+  bottom: -0.07em;
+  left: 0;
+  -webkit-transition: right 0.4s cubic-bezier(0, 0.5, 0, 1);
+  transition: right 0.4s cubic-bezier(0, 0.5, 0, 1);
+}
+
+a:hover:after {
+  right: 0;
+}
+
+.links {
   font-size: 1.4rem;
 }
 
