@@ -1,82 +1,53 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+
 :root {
-  --main-color: #a9d2d3;
+  font-family: "Source Code Pro";
+  --text-color: black;
+  margin: 2rem;
 }
 
+html,
 body {
-  font-family: "Open Sans", sans-serif;
-  background: #1b1f20;
-  color: white;
-  text-align: center;
+  height: 100%;
 }
 
 h1 {
-  font-size: 2.6em;
+  font-size: 2rem;
+  margin-bottom: 0.2em;
 }
 
-a {
-  color: var(--main-color);
-  text-decoration: none;
-}
-
-a::before {
-  content: "";
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+p {
   margin-bottom: 0.4em;
-  margin-top: 0.5em;
 }
 
-h2 {
-  font-size: 1.6em;
+a,
+li {
+  text-decoration: none !important;
+  color: var(--text-color);
 }
 
-a:hover {
-  text-decoration: none;
+.links a {
+  font-size: 1.4rem;
 }
 
-a {
-  text-decoration: none;
-  position: relative;
+br {
+  border-top: 1px solid black;
 }
 
-a:after {
-  border-radius: 1em;
-  border-top: 0.1em solid var(--main-color);
-  content: "";
-  position: absolute;
-  right: 100%;
-  bottom: 0.05em;
-  left: 0;
-  -webkit-transition: right 0.4s cubic-bezier(0, 0.5, 0, 1);
-  transition: right 0.4s cubic-bezier(0, 0.5, 0, 1);
+.main-content {
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50%;
 }
 
-a:hover:after {
-  right: 0;
+nav {
+  display: flex;
+  justify-content: left;
 }
 
-.donators-header h1 {
-  margin-bottom: 0.1em;
+nav > a {
+  padding: 20px;
 }
-
-.donators-header p {
-  margin-bottom: 0.7em;
-}
-
-.projects p,
-.donators p {
-  margin: 0.4em;
-}
-
-.projects p::before,
-.donators p::before {
-  content: "=> ";
-}
-/*# sourceMappingURL=main.css.map */
