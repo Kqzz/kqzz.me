@@ -17,6 +17,11 @@ h1 {
   margin-bottom: 0.2em;
 }
 
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5em;
+}
+
 p {
   margin-bottom: 0.4em;
 }
@@ -70,4 +75,8 @@ nav {
 
 nav > a {
   padding: 20px;
+}
+
+ul li::before {
+  content: "- ";
 }
