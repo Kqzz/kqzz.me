@@ -56,13 +56,18 @@ sub {
   }
 }
 
+a {
+  text-decoration: none;
+  text-decoration: none;
+  color: white;
+}
+
 .btn {
   margin: 0.2rem;
   border: none;
   color: white;
   background: #545454;
   text-align: center;
-  text-decoration: none;
   box-shadow: 0px 3px 6px 1px rgba(40, 40, 40, 0.25);
   border-radius: 13px;
   border: none;
@@ -85,4 +90,17 @@ sub {
 .img-btn {
   width: 2rem;
   padding: 0.5rem;
+}
+
+footer {
+  position: absolute;
+  display: block;
+  align-items: center;
+  height: 2em;
+  font-size: 0.6em;
+  text-align: center;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: rgba(255, 255, 255, 0.452);
 }
