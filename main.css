@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
 html {
+  font-family: "Inter", sans-serif;
   background-color: #171717;
   color: white;
 }
@@ -22,7 +25,7 @@ sub {
 }
 
 .head {
-  margin-top: 20vh;
+  margin-top: 30vh;
 }
 
 .container {
@@ -68,13 +71,18 @@ sub {
   font-weight: bold;
   font-size: 1.25rem;
   vertical-align: middle;
+  transition: cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s transform;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
 }
 
 .text-btn {
-  padding: 0.5rem 1.25rem;
+  padding: 1rem 1.25rem 0rem 1.25rem;
 }
 
 .img-btn {
   width: 2rem;
-  padding: 0.7rem;
+  padding: 0.5rem;
 }
