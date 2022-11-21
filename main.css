@@ -2,30 +2,44 @@
 
 html {
   font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
   background-color: #171717;
   color: white;
 }
 
 h1 {
-  font-size: 13vh;
+  font-size: 9rem;
   font-weight: bold;
-  margin-bottom: 2vh;
+  margin-bottom: 1.4rem;
+}
+
+h2 {
+  font-size: 6rem;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+  font-weight: bold;
 }
 
 sub {
-  font-size: 3vh;
+  font-size: 1.4rem;
+  padding-left: 0.6rem;
 }
 
 .logo {
   border-radius: 50%;
-  height: 18vh;
-  width: 18vh;
-  margin-top: 1vh;
-  margin-right: 3vh;
+  height: 12rem;
+  width: 12rem;
+  margin-top: 1rem;
+  margin-right: 1.5rem;
 }
 
 .head {
-  margin-top: 30vh;
+  padding-top: 30vh;
+  height: 70vh;
 }
 
 .container {
@@ -64,11 +78,10 @@ a {
 
 .btn {
   margin: 0.2rem;
-  border: none;
   color: white;
   background: #545454;
   text-align: center;
-  box-shadow: 0px 3px 6px 1px rgba(40, 40, 40, 0.25);
+  box-shadow: 0px 3px 6px 1px rgba(40, 40, 40, 0.4);
   border-radius: 13px;
   border: none;
   height: 2rem;
@@ -93,7 +106,6 @@ a {
 }
 
 footer {
-  position: absolute;
   display: block;
   align-items: center;
   height: 2em;
@@ -103,4 +115,24 @@ footer {
   bottom: 0;
   left: 0;
   color: rgba(255, 255, 255, 0.452);
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+}
+
+.projects {
+  justify-content: left;
+}
+
+.project-card {
+  padding: 1rem;
+  width: 16rem;
+  height: 4rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  color: white;
+  background: #545454;
+  box-shadow: 0px 3px 6px 1px rgba(40, 40, 40, 0.4);
+  border-radius: 13px;
+  border: none;
 }
