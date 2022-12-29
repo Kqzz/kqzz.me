@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <meta name="description" content="startpage" />
+    <link rel="stylesheet" type="text/css" href="startpage.css" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-left">
+        <img src="images/profile.png" alt="nil" width="256" height="256" />
+      </div>
+      <div class="container-right">
+        <div class="category">
+          <li class="title">social</li>
+          <li><a href="https://twitter.com">twitter</a></li>
+          <li><a href="https://last.fm/">last.fm</a></li>
+          <li><a href="https://discord.com/app">discord</a></li>
+        </div>
+        <div class="category">
+          <li class="title">watch</li>
+          <li><a href="https://youtube.com">youtube</a></li>
+          <li><a href="https://peacocktv.com">peacock</a></li>
+          <li><a href="https://netflix.com">netflix</a></li>
+          <li><a href="https://disneyplus.com">disney+</a></li>
+        </div>
+      </div>
+      <div class="bars">
+        <p id="scrobbles">scrobbles</p>
+        <div class="barwrapper">
+          <div class="bar" id="lastfm"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var start = new Date();
+    start.setHours(0, 0, 0, 0);
+
+    var end = new Date();
+    end.setHours(23, 59, 59, 999);
+    console.log(
+
+      `http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=kqzz&api_key=c92cefd9ab9957cec3ffccdb70ae16c6&from=${start.getTime() / 1000}&to=${end.getTime() / 1000}&format=json`
+    )
+
+    fetch(
+      `http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=kqzz&api_key=c92cefd9ab9957cec3ffccdb70ae16c6&from=${start.getTime() / 1000}&to=${end.getTime() / 1000}&format=json`
+    ).then((res) => {
+      res.json().then((json) => {
+        let scrobbles = new Number(json.recenttracks['@attr'].total);
+        let percent = ((scrobbles) / 50) * 100;
+        if (percent >= 100) {
+          percent = 100
+        }
+        document.getElementById("lastfm").style.width = `${percent}%`;
+        document.getElementById("scrobbles").innerHTML = `${scrobbles} scrobbles today`;
+      });
+    });
+  </script>
+</html>
