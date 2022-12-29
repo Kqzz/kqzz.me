@@ -5,39 +5,97 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>kqzz.me</title>
-    <link rel="shortcut icon" type="image/jpg" href="favicon.ico" />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="main.css" />
-    <meta name="description" content="kqzz 👀" />
-    <meta content="kqzz.me" property="og:title" />
-    <meta content="kqzz 👀" property="og:description" />
-    <meta content="https://kqzz.me" property="og:url" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
   </head>
-
   <body>
-    <nav>
-      <a href="/">home</a>
-      <a href="/donators.html">donators</a>
-      <a href="/projects.html">projects</a>
-    </nav>
-    <div class="main-content">
-      <h1>kqzz</h1>
-      <div class="links">
-        <a href="https://github.com/Kqzz" target="blank">github</a> |
-
+    <div class="head">
+      <div class="flex">
+        <img src="./images/logo.png" alt="" class="logo" />
+        <div>
+          <h1>Kqzz</h1>
+          <p class="sub">Go & Python Dev</p>
+        </div>
+      </div>
+      <div class="flex">
+        <a class="btn text-btn" href="#projects">Projects</a>
+        <!-- <a class="btn text-btn">Contact</a> -->
+        <div class="break"></div>
+        <a class="btn img-btn" href="https://github.com/Kqzz" target="_blank">
+          <img
+            src="./images/github-icon.svg"
+            alt="github"
+            class="social-icon"
+          />
+        </a>
         <a
+          class="btn img-btn"
           href="https://discordid.netlify.app/?id=703244711187578911"
-          target="blank"
-          >discord</a
+          target="_blank"
         >
-        |
-
-        <a href="https://keybase.io/kqzz" target="blank">keybase</a> |
-
-        <a href="https://namemc.com/Elektra.6" target="blank">namemc</a> |
-        <a href="mailto:kqzz@kqzz.me">mail</a>
+          <img
+            src="./images/discord-icon.svg"
+            alt="discord"
+            class="social-icon"
+          />
+        </a>
+        <a class="btn img-btn" href="mailto:kqzz@kqzz.me" target="_blank">
+          <img src="./images/mail-icon.svg" alt="mail" class="social-icon" />
+        </a>
+        <a href="https://t.me/kq_zz" class="btn img-btn">
+          <img
+            src="./images/telegram-icon.svg"
+            alt="telegram"
+            class="social-icon"
+          />
+        </a>
       </div>
     </div>
+    <div id="projects">
+      <h2>Projects</h2>
+      <div class="flex projects">
+        <div class="project-card">
+          <h3>kqzz.me</h3>
+          <p>Personal website</p>
+        </div>
+        <div class="project-card">
+          <h3>MCsniperGO</h3>
+          <p class="project-description">
+            Free & open source Minecraft name sniper
+          </p>
+        </div>
+        <div class="project-card">
+          <h3>Atlas</h3>
+          <p class="project-description">Paid Minecraft name sniper</p>
+        </div>
+      </div>
+    </div>
+    <div id="donators">
+      <h2>Donators</h2>
+      <p>Thank you to all the people who've donated to me for my projects</p>
+      <div class="flex donators"></div>
+      <ul class="donators-list">
+        <li>danktrain</li>
+        <li>2j9</li>
+        <li>codins</li>
+        <li>cryst6l</li>
+        <li>emil</li>
+        <li>jam</li>
+        <li>kenny</li>
+        <li>lumen</li>
+        <li>mub</li>
+        <li>navaja</li>
+        <li>nerd</li>
+        <li>porkchcp</li>
+        <li>sirnom</li>
+        <li>tenscape</li>
+        <li>ty.</li>
+        <li>wro</li>
+      </ul>
+    </div>
+    <footer>
+      Copyright © 2022 Kqzz. Website source on
+      <a href="https://github.com/Kqzz/kqzz.me" target="_blank">GitHub</a>.
+    </footer>
   </body>
 </html>
