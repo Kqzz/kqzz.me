@@ -39,7 +39,8 @@
     </div>
   </body>
   <script>
-    var start = new Date();
+    updateSrobbles = () => {
+      var start = new Date();
     start.setHours(0, 0, 0, 0);
 
     var end = new Date();
@@ -56,7 +57,12 @@
         }
         document.getElementById("lastfm").style.width = `${percent}%`;
         document.getElementById("scrobbles").innerHTML = `${scrobbles} scrobbles today`;
+        console.log('updated scrobbles')
       });
     });
+    }
+
+    setInterval(updateSrobbles(), 60 * 1000)
+    
   </script>
 </html>
