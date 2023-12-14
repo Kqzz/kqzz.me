@@ -3,7 +3,6 @@
   color: white;
   --highlight-background: #696d86;
   list-style-type: none;
-  font-family: 'JetBrains Mono', monospace;
 }
 
 html,
@@ -11,6 +10,7 @@ body {
   overflow: hidden;
   height: 100%;
   width: 100%;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .bars {
