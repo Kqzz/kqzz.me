@@ -93,9 +93,12 @@
         <li>wro</li>
       </ul>
     </div>
-    <footer>
-      Copyright © 2022 Kqzz. Website source on
+    <footer id="footer">
+      Copyright © 2024 Kqzz. Website source on
       <a href="https://github.com/Kqzz/kqzz.me" target="_blank">GitHub</a>.
     </footer>
+    <script>
+      document.getElementById('footer').innerHTML.replace('2024', new Date().getFullYear())
+    </script>
   </body>
 </html>

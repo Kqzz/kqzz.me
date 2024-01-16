@@ -7,6 +7,9 @@ html {
   color: white;
 }
 
+footer > a {
+  text-decoration: underline;
+}
 h1 {
   font-size: 9rem;
   font-weight: bold;
