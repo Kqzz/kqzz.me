@@ -46,6 +46,9 @@
         </div>
       </div>
       <div class="bars">
+        <div class="now-playing">
+          <p id="now-playing-text"></p>
+        </div>
         <p id="scrobbles">scrobbles</p>
         <div class="barwrapper">
           <div class="bar" id="lastfm"></div>
@@ -54,30 +57,40 @@
     </div>
   </body>
   <script>
-    updateSrobbles = () => {
+    function updateScrobbles() {
       var start = new Date();
-    start.setHours(0, 0, 0, 0);
+      start.setHours(0, 0, 0, 0);
 
-    var end = new Date();
-    end.setHours(23, 59, 59, 999);
+      var end = new Date();
+      end.setHours(23, 59, 59, 999);
 
-    fetch(
-      `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=kqzz&api_key=c92cefd9ab9957cec3ffccdb70ae16c6&from=${start.getTime() / 1000}&to=${end.getTime() / 1000}&format=json`
-    ).then((res) => {
-      res.json().then((json) => {
-        let scrobbles = new Number(json.recenttracks['@attr'].total);
-        let percent = ((scrobbles) / 50) * 100;
-        if (percent >= 100) {
-          percent = 100
-        }
-        document.getElementById("lastfm").style.width = `${percent}%`;
-        document.getElementById("scrobbles").innerHTML = `${scrobbles} scrobbles today`;
-        console.log('updated scrobbles')
+      fetch(
+        `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=kqzz&api_key=c92cefd9ab9957cec3ffccdb70ae16c6&from=${start.getTime() / 1000}&to=${end.getTime() / 1000}&format=json`
+      ).then((res) => {
+        res.json().then((json) => {
+          let scrobbles = Number(json.recenttracks['@attr'].total);
+          let percent = (scrobbles / 50) * 100;
+          if (percent >= 100) {
+            percent = 100;
+          }
+          document.getElementById("lastfm").style.width = `${percent}%`;
+          document.getElementById("scrobbles").innerHTML = `${scrobbles} scrobbles today`;
+
+          // Get the currently playing track
+          let nowPlaying = json.recenttracks.track[0]['@attr'] && json.recenttracks.track[0]['@attr'].nowplaying;
+          if (nowPlaying) {
+            let trackName = json.recenttracks.track[0].name;
+            let artistName = json.recenttracks.track[0].artist['#text'];
+            document.getElementById("now-playing-text").innerHTML = `Now Playing: ${trackName} - ${artistName}`;
+          } else {
+            document.getElementById("now-playing-text").innerHTML = ``;
+          }
+        });
       });
-    });
     }
-    updateSrobbles()
-    setInterval(updateSrobbles, 60 * 1000)
-    
+
+    updateScrobbles();
+    setInterval(updateScrobbles, 60 * 1000);
   </script>
 </html>
+
