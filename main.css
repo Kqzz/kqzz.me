@@ -1,161 +1,110 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
-html {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
   font-family: "Inter", sans-serif;
-  scroll-behavior: smooth;
   background-color: #171717;
   color: white;
 }
 
-footer > a {
-  text-decoration: underline;
-}
-h1 {
-  font-size: 9rem;
-  font-weight: bold;
-  margin-bottom: 1.4rem;
+body {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-h2 {
-  font-size: 6rem;
-  font-weight: bold;
+body::-webkit-scrollbar {
+  display: none;
 }
 
-h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.2rem;
-  font-weight: bold;
-}
-
-.sub {
-  font-size: 1.4rem;
-  padding-left: 0.6rem;
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100vh;
+  z-index: 2;
+  overflow: hidden;
+  will-change: transform;
 }
 
-.logo {
-  border-radius: 50%;
-  height: 12rem;
-  width: 12rem;
-  margin-top: 1rem;
-  margin-right: 1.5rem;
-}
-
-.head {
-  padding-top: 30vh;
-  height: 70vh;
-}
-
-.container {
-  margin: 0 auto;
-  text-align: center;
-}
-
-.flex {
-  margin-top: 1vh;
-  margin-bottom: 3vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.btn img {
+#canvas {
+  display: block;
   width: 100%;
   height: 100%;
+  cursor: grab;
 }
 
-.break {
-  height: 0;
+#canvas:active {
+  cursor: grabbing;
 }
 
-@media screen and (max-width: 768px) {
-  .break {
-    flex-basis: 100%;
-  }
-}
-
-@media screen and (max-width: 565px) {
-  .sub {
-    text-align: center;
-  }
-}
-
-a {
-  text-decoration: none;
-  text-decoration: none;
-  color: white;
-}
-
-.btn {
-  margin: 0.2rem;
-  color: white;
-  background: #545454;
-  text-align: center;
-  box-shadow: 0px 3px 6px 1px rgba(40, 40, 40, 0.4);
-  border-radius: 13px;
-  border: none;
-  height: 2rem;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.25rem;
-  vertical-align: middle;
-  transition: cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s transform;
-}
-
-.btn:hover {
-  transform: translateY(-4px);
-}
-
-.text-btn {
-  padding: 1rem 1.25rem 0rem 1.25rem;
-}
-
-.img-btn {
-  width: 2rem;
-  padding: 0.5rem;
-}
-
-footer {
-  display: block;
-  align-items: center;
-  height: 2em;
-  font-size: 0.6em;
-  text-align: center;
-}
-
-.projects {
+#contact {
+  position: relative;
+  z-index: 3;
+  margin-top: 100vh;
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-start;
   justify-content: center;
+  padding: 15vh 1rem 3rem;
 }
 
-#donators {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+.contact-inner p {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
   text-align: center;
 }
 
-#donators > p {
-  font-size: 0.9rem;
+.contact-inner u {
+  text-underline-offset: 3px;
 }
 
-h2 {
-  text-align: center;
+.contact-inner a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.project-card {
-  transition: cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s transform;
-  padding: 1rem;
-  width: 16rem;
-  height: 4rem;
-  margin-right: 1rem;
-  margin-top: 1rem;
-  color: white;
-  background: #545454;
-  box-shadow: 0px 3px 6px 1px rgba(40, 40, 40, 0.4);
-  border-radius: 13px;
-  border: none;
+#scrollBtn {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: none;
+  border: 2px solid rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.7);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
-  transition: transform 0.3s ease-out;
+#scrollBtn:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-color: rgba(255,255,255,0.8);
+}
+
+@media (max-width: 600px) {
+  #scrollBtn {
+    width: 72px;
+    height: 72px;
+    font-size: 1.8rem;
+    border-width: 3px;
+    bottom: 40px;
+  }
 }

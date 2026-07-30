@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>kqzz.me</title>
     <link rel="stylesheet" href="reset.css" />
@@ -10,89 +9,216 @@
     <script defer data-domain="kqzz.me" src="https://stats.kqzz.me/js/script.js"></script>
   </head>
   <body>
-    <div class="head">
-      <div class="flex">
-        <img src="./images/logo.png" alt="" class="logo" />
-        <div>
-          <h1>Kqzz</h1>
-          <p class="sub">Go & Python Dev</p>
-        </div>
+    <div id="header"><canvas id="canvas"></canvas></div>
+    <section id="contact">
+      <div class="contact-inner">
+        <p><a href="mailto:kqzz@kqzz.me"><u>[email]</u> kqzz@kqzz.me</a></p>
+        <p><a href="https://github.com/kqzz" target="_blank" rel="noopener"><u>[github]</u> /kqzz</a></p>
+        <p><a href="https://discordid.netlify.app/?id=703244711187578911" target="_blank" rel="noopener"><u>[discord]</u> @kqzz</a></p>
       </div>
-      <div class="flex">
-        <a class="btn text-btn" href="#projects">Projects</a>
-        <!-- <a class="btn text-btn">Contact</a> -->
-        <div class="break"></div>
-        <a class="btn img-btn" href="https://github.com/Kqzz" target="_blank">
-          <img
-            src="./images/github-icon.svg"
-            alt="github"
-            class="social-icon"
-          />
-        </a>
-        <a
-          class="btn img-btn"
-          href="https://discordid.netlify.app/?id=703244711187578911"
-          target="_blank"
-        >
-          <img
-            src="./images/discord-icon.svg"
-            alt="discord"
-            class="social-icon"
-          />
-        </a>
-        <a class="btn img-btn" href="mailto:kqzz@kqzz.me" target="_blank">
-          <img src="./images/mail-icon.svg" alt="mail" class="social-icon" />
-        </a>
-      </div>
-    </div>
-    <div id="projects">
-      <h2>Projects</h2>
-      <div class="flex projects">
-        <div class="project-card">
-          <h3>kqzz.me</h3>
-          <p>Personal website</p>
-        </div>
-        <div class="project-card">
-          <h3>MCsniperGO</h3>
-          <p class="project-description">
-            Free & open source Minecraft name sniper
-          </p>
-        </div>
-        <div class="project-card">
-          <h3>Atlas</h3>
-          <p class="project-description">Paid Minecraft name sniper</p>
-        </div>
-      </div>
-    </div>
-    <div id="donators">
-      <h2>Donators</h2>
-      <p>Thank you to all the people who've donated to me for my projects</p>
-      <div class="flex donators"></div>
-      <ul class="donators-list">
-        <li>danktrain</li>
-        <li>2j9</li>
-        <li>codins</li>
-        <li>cryst6l</li>
-        <li>emil</li>
-        <li>jam</li>
-        <li>kenny</li>
-        <li>lumen</li>
-        <li>mub</li>
-        <li>navaja</li>
-        <li>nerd</li>
-        <li>porkchcp</li>
-        <li>sirnom</li>
-        <li>tenscape</li>
-        <li>ty.</li>
-        <li>wro</li>
-      </ul>
-    </div>
-    <footer id="footer">
-      Copyright © 2024 Kqzz. Website source on
-      <a href="https://github.com/Kqzz/kqzz.me" target="_blank">GitHub</a>.
-    </footer>
-    <script>
-      document.getElementById('footer').innerHTML.replace('2024', new Date().getFullYear())
+    </section>
+    <button id="scrollBtn">&#8595;</button>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as THREE from "three";
+      import { FontLoader } from "three/addons/loaders/FontLoader.js";
+
+      const canvas = document.getElementById("canvas");
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0x171717);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.z = 6;
+
+      const ambient = new THREE.AmbientLight(0xffffff, 1.5);
+      scene.add(ambient);
+      const dl = new THREE.DirectionalLight(0xffffff, 3);
+      dl.position.set(5, 5, 8);
+      scene.add(dl);
+      const dl2 = new THREE.DirectionalLight(0xffffff, 1);
+      dl2.position.set(-5, -3, -5);
+      scene.add(dl2);
+
+      let mesh;
+      let vx = 0, vy = 0;
+      let dragging = false, px = 0, py = 0;
+      let sx = 0, sy = 0, st = 0;
+      let textSize;
+
+      function getTextSize() {
+        return Math.min(2, Math.max(0.5, window.innerWidth / 600));
+      }
+
+      function getCameraZ(s) {
+        const aspect = window.innerWidth / window.innerHeight;
+        return s * 3 * Math.max(0.8, 2 / aspect);
+      }
+
+      function resizeView() {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        const s = getTextSize();
+        if (s !== textSize && font) {
+          textSize = s;
+          camera.position.z = getCameraZ(s);
+          buildText(0.34);
+        }
+      }
+
+      function buildText(depth) {
+        if (mesh) {
+          scene.remove(mesh);
+          mesh.geometry.dispose();
+          mesh.material.dispose();
+        }
+        if (!font) return;
+
+        const s = textSize || getTextSize();
+        const shapes = font.generateShapes("kqzz", s);
+
+        let geo;
+        if (depth === 0) {
+          geo = new THREE.ShapeGeometry(shapes);
+        } else {
+          geo = new THREE.ExtrudeGeometry(shapes, {
+            depth,
+            bevelEnabled: false,
+          });
+        }
+        geo.computeBoundingBox();
+        geo.center();
+
+        const mat = new THREE.MeshStandardMaterial({
+          color: 0xffffff,
+          roughness: 0.3,
+          metalness: 0.05,
+        });
+        mesh = new THREE.Mesh(geo, mat);
+        scene.add(mesh);
+      }
+
+      let font = null;
+      const loader = new FontLoader();
+      loader.load(
+        "https://unpkg.com/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json",
+        (f) => {
+          font = f;
+          textSize = getTextSize();
+          camera.position.z = getCameraZ(textSize);
+          buildText(0.34);
+        }
+      );
+
+      const el = renderer.domElement;
+      el.addEventListener("mousedown", (e) => {
+        dragging = true;
+        sx = px = e.clientX;
+        sy = py = e.clientY;
+        st = performance.now();
+      });
+      window.addEventListener("mousemove", (e) => {
+        if (!dragging || !mesh) return;
+        const dx = e.clientX - px, dy = e.clientY - py;
+        mesh.rotation.y += dx * 0.006;
+        mesh.rotation.x += dy * 0.006;
+        px = e.clientX; py = e.clientY;
+      });
+      window.addEventListener("mouseup", () => {
+        if (dragging) {
+          const dt = performance.now() - st;
+          if (dt > 0) {
+            vx = ((py - sy) / dt) * 0.1;
+            vy = ((px - sx) / dt) * 0.1;
+          }
+        }
+        dragging = false;
+      });
+
+      el.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        dragging = true;
+        sx = px = e.touches[0].clientX;
+        sy = py = e.touches[0].clientY;
+        st = performance.now();
+      });
+      el.addEventListener("touchmove", (e) => {
+        e.preventDefault();
+        if (!dragging || !mesh) return;
+        const dx = e.touches[0].clientX - px, dy = e.touches[0].clientY - py;
+        mesh.rotation.y += dx * 0.006;
+        mesh.rotation.x += dy * 0.006;
+        px = e.touches[0].clientX; py = e.touches[0].clientY;
+      });
+      el.addEventListener("touchend", () => {
+        if (dragging) {
+          const dt = performance.now() - st;
+          if (dt > 0) {
+            vx = ((py - sy) / dt) * 0.1;
+            vy = ((px - sx) / dt) * 0.1;
+          }
+        }
+        dragging = false;
+      });
+
+      window.addEventListener("resize", resizeView);
+
+      function tick() {
+        requestAnimationFrame(tick);
+        if (mesh) {
+          if (!dragging) {
+            mesh.rotation.y += 0.008 + vy;
+            mesh.rotation.x += vx;
+            mesh.rotation.x *= 0.93;
+          }
+          vx *= 0.97;
+          vy *= 0.97;
+          renderer.render(scene, camera);
+        }
+      }
+      tick();
+
+      // --- scroll-driven header ---
+      const header = document.getElementById("header");
+      const btn = document.getElementById("scrollBtn");
+
+      function onScroll() {
+        const sy = window.scrollY;
+        const h = window.innerHeight;
+        const p = Math.min(1, sy / (h * 0.6));
+        const s = 1 - p * 0.65;
+        const y = p * -h * 0.4;
+        header.style.transform = `scale(${s}) translateY(${y}px)`;
+        header.style.transformOrigin = "center center";
+
+        btn.style.opacity = Math.max(0, 1 - sy / 100);
+        btn.style.pointerEvents = sy < 100 ? "auto" : "none";
+        canvas.style.pointerEvents = p > 0.01 ? "none" : "auto";
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      onScroll();
+
+      btn.addEventListener("click", () => {
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+      });
     </script>
   </body>
 </html>
